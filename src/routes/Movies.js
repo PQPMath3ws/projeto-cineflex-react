@@ -13,10 +13,10 @@ const Movies = () => {
     let navigate = useNavigate();
 
     async function getMovies() {
-        let req = await axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
-        if (req.status === 200) {
+        try {
+            let req = await axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
             setMovies(req.data);
-        } else {
+        } catch (error) {
             navigate(0);
         }
     }
