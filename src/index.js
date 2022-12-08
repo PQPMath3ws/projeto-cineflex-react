@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 
+import Movies from "./routes/Movies";
 import Navbar from './components/Navbar';
 import Reset from "./styles/Reset";
 
@@ -15,6 +16,7 @@ root.render(
             <Reset></Reset>
             <Navbar></Navbar>
             <Routes>
+                <Route path="/" element={<Movies></Movies>}></Route>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
