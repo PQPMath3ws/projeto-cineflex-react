@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const NavbarStyle = {
     NavbarDiv: styled.div`
+        position: fixed;
+        top: 0px;
         width: 100%;
         height: 67px;
         background-color: #C3CFD9;
@@ -9,7 +11,6 @@ const NavbarStyle = {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        position: relative;
     `,
     NavbarTitle: styled.p`
         display: block;
