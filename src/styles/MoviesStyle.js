@@ -35,7 +35,7 @@ const MoviesStyle = {
         }
     `,
     MoviesTitle: styled.p`
-        margin-top: 40px;
+        margin-top: 20px;
         margin-bottom: 60px;
         text-align: center;
         font-family: 'Roboto';
@@ -48,13 +48,13 @@ const MoviesStyle = {
     MoviesDiv: styled.div`
         margin-top: 20px;
         margin-left: 60px;
-        margin-right: 60px;
+        margin-right: 80px;
         display: flex;
         flex-wrap: wrap;
-        gap: 6%;
+        gap: 10%;
 
         ${this} > div {
-            flex: 44%;
+            flex: 45%;
             margin-bottom: 40px;
         }
     `,
