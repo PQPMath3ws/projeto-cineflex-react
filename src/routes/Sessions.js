@@ -39,7 +39,7 @@ const Sessions = () => {
         <>
             {JSON.stringify(showTimes) !== JSON.stringify({}) ? <SessionsStyle.SessionsDiv>
                 <SessionsStyle.SessionsText>Selecione o horário</SessionsStyle.SessionsText>
-                {showTimes.days.map(day => <Session session={day.id} date={day.date} weekday={day.weekday} showtimes={day.showtimes}></Session>)}
+                {showTimes.days.map(day => <Session key={day.id} session={day.id} date={day.date} weekday={day.weekday} showtimes={day.showtimes}></Session>)}
                 <SessionsStyle.MovieInfosDiv>
                     <SessionsStyle.MovieImage src={showTimes.posterURL} alt={showTimes.title}></SessionsStyle.MovieImage>
                     <SessionsStyle.MovieTitle>{showTimes.title}</SessionsStyle.MovieTitle>
