@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import Navbar from './components/Navbar';
 
+import BookTicket from './routes/BookTicket';
 import Movies from "./routes/Movies";
 import Sessions from './routes/Sessions';
 
@@ -22,6 +23,7 @@ root.render(
             <Navbar></Navbar>
             <Routes>
                 <Route path="/" element={<Movies></Movies>}></Route>
+                <Route path="/bookTicket/:id" element={<BookTicket></BookTicket>}></Route>
                 <Route path="/sessions/:id" element={<Sessions></Sessions>}></Route>
             </Routes>
         </BrowserRouter>
