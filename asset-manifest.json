@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/projeto-cineflex-react/static/js/main.6c71bfe2.js",
+    "main.js": "/projeto-cineflex-react/static/js/main.d85a9ff6.js",
     "static/js/496.ec4e2160.chunk.js": "/projeto-cineflex-react/static/js/496.ec4e2160.chunk.js",
     "index.html": "/projeto-cineflex-react/index.html",
-    "main.6c71bfe2.js.map": "/projeto-cineflex-react/static/js/main.6c71bfe2.js.map",
+    "main.d85a9ff6.js.map": "/projeto-cineflex-react/static/js/main.d85a9ff6.js.map",
     "496.ec4e2160.chunk.js.map": "/projeto-cineflex-react/static/js/496.ec4e2160.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.6c71bfe2.js"
+    "static/js/main.d85a9ff6.js"
   ]
 }
