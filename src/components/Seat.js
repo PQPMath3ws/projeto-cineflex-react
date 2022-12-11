@@ -4,16 +4,22 @@ import SeatStyle from "../styles/SeatStyle";
 const Seat = (props) => {
     const [selected, setSelected] = useState(false);
 
+    function removeSeat(seat, seats) {
+        let indexOf = seats.indexOf(seat);
+        if (indexOf > -1) seats.splice(indexOf, 1);
+        setSelected(false);
+    }
+
     function changeSeatState() {
         if (props.isAvailable) {
             let seats = [...props.selectedSeats];
             if (selected) {
                 let seat = seats.filter(seatToFilter => seatToFilter.seatId === props.id)[0];
-                if (window.confirm("Deseja realmente remover essa poltrona cadastrada?")) {
-                    let indexOf = seats.indexOf(seat);
-                    if (indexOf > -1) seats.splice(indexOf, 1);
-                    setSelected(false);
-                }
+                if (seat.userName.length > 0 || seat.userCpf.length > 0) {
+                    if (window.confirm("Deseja realmente remover essa poltrona cadastrada?")) {
+                        removeSeat(seat, seats);
+                    }
+                } else removeSeat(seat, seats);
             } else {
                 seats.push({
                     seatId: props.id,

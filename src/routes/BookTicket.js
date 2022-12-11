@@ -52,7 +52,7 @@ const BookTicket = () => {
     async function requestTicket() {
         let canProceed = false;
         selectedSeats.forEach(selectedSeat => {
-            if (selectedSeat.userName.length >= 0 && selectedSeat.userCpf.length === 11) canProceed = true;
+            if (selectedSeat.userName.length >= 3 && selectedSeat.userCpf.length === 11) canProceed = true;
             else canProceed = false;
         });
         if (canProceed) {
