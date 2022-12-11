@@ -31,6 +31,7 @@ const Finish = () => {
                 getSessionInfos();
             }
         }
+        console.log("OK");
     });
 
     if (!location.state) return (<Navigate to="/"></Navigate>);
@@ -39,16 +40,16 @@ const Finish = () => {
         <>
             {JSON.stringify(session) !== JSON.stringify({}) ? <FinishStyle.FinishDiv>
                 <FinishStyle.FinishText>Pedido feito com sucesso!</FinishStyle.FinishText>
-                <FinishStyle.InfoDiv>
+                <FinishStyle.InfoDiv data-test="movie-info">
                     <FinishStyle.InfoTitle>Filme e Sessão</FinishStyle.InfoTitle>
                     <FinishStyle.InfoText>{session.movie.title}</FinishStyle.InfoText>
                     <FinishStyle.InfoText>{session.day.date} {session.name}</FinishStyle.InfoText>
                 </FinishStyle.InfoDiv>
-                <FinishStyle.InfoDiv>
+                <FinishStyle.InfoDiv data-test="seats-info">
                     <FinishStyle.InfoTitle>{session.seats.filter(seat => seatsIDS.includes(seat.id)).length > 1 ? "Ingressos" : "Ingresso"}</FinishStyle.InfoTitle>
                     {session.seats.filter(seat => seatsIDS.includes(seat.id)).map(seat => <FinishStyle.InfoText key={seat.id}>Assento {seat.name}</FinishStyle.InfoText>)}
                 </FinishStyle.InfoDiv>
-                <FinishStyle.InfoDiv>
+                <FinishStyle.InfoDiv data-test="client-info">
                     <FinishStyle.InfoTitle>{session.seats.filter(seat => seatsIDS.includes(seat.id)).length > 1 ? "Compradores" : "Comprador"}</FinishStyle.InfoTitle>
                     {compradores.map(comprador => <div key={comprador.idAssento}>
                         <FinishStyle.InfoText>Nome: {comprador.nome}</FinishStyle.InfoText>
@@ -56,7 +57,7 @@ const Finish = () => {
                     </div>)}
                 </FinishStyle.InfoDiv>
                 <FinishStyle.ReturnButtonDiv>
-                    <FinishStyle.ReturnButton onClick={() => navigate("/")}>Voltar para Home</FinishStyle.ReturnButton>
+                    <FinishStyle.ReturnButton onClick={() => navigate("/")} data-test="go-home-btn">Voltar para Home</FinishStyle.ReturnButton>
                 </FinishStyle.ReturnButtonDiv>
             </FinishStyle.FinishDiv> : <FinishStyle.LoadingDiv>
                     <FinishStyle.SpinnerDiv>

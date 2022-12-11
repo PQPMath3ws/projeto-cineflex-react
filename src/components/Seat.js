@@ -30,7 +30,7 @@ const Seat = (props) => {
     }
 
     return (
-        <SeatStyle.SeatDiv isAvailable={props.isAvailable} isSelected={selected} onClick={props.isAvailable ? changeSeatState : undefined}>
+        <SeatStyle.SeatDiv isAvailable={props.isAvailable} isSelected={selected} onClick={props.isAvailable ? changeSeatState : undefined} data-test="seat">
             <SeatStyle.SeatNumber>{("0" + props.seatNumber).slice(-2)}</SeatStyle.SeatNumber>
         </SeatStyle.SeatDiv>
     );

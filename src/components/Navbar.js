@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <NavbarStyle.NavbarDiv>
             <NavbarStyle.NavbarTitle>CineFlex</NavbarStyle.NavbarTitle>
-            <NavbarStyle.NavbarBackLinkButton onClick={() => navigate(-1)}><NavbarStyle.ArrowBackIcon></NavbarStyle.ArrowBackIcon></NavbarStyle.NavbarBackLinkButton>
+            <NavbarStyle.NavbarBackLinkButton onClick={() => navigate(-1)} data-test="go-home-header-btn"><NavbarStyle.ArrowBackIcon></NavbarStyle.ArrowBackIcon></NavbarStyle.NavbarBackLinkButton>
         </NavbarStyle.NavbarDiv>
     );
 }

@@ -108,18 +108,18 @@ const BookTicket = () => {
                         <BookTicketStyle.FielToFillDiv>
                             <BookTicketStyle.FielToFillTitle>Assento {selectedSeat.seatNumber}:</BookTicketStyle.FielToFillTitle>
                             <BookTicketStyle.FielToFillText>Nome do Comprador</BookTicketStyle.FielToFillText>
-                            <BookTicketStyle.FielToFillInput placeholder="Nome do Comprador:" value={selectedSeat.userName} onChange={(element) => validateUserName(element, selectedSeat)}></BookTicketStyle.FielToFillInput>
+                            <BookTicketStyle.FielToFillInput placeholder="Nome do Comprador:" value={selectedSeat.userName} onChange={(element) => validateUserName(element, selectedSeat)} data-test="client-name"></BookTicketStyle.FielToFillInput>
                         </BookTicketStyle.FielToFillDiv>
                         <BookTicketStyle.FielToFillDiv>
                             <BookTicketStyle.FielToFillText>Nome do Comprador</BookTicketStyle.FielToFillText>
-                            <BookTicketStyle.FielToFillInput placeholder="Digite seu CPF" value={selectedSeat.userCpf} onChange={(element) => validateUserCpf(element, selectedSeat)}></BookTicketStyle.FielToFillInput>
+                            <BookTicketStyle.FielToFillInput placeholder="Digite seu CPF" value={selectedSeat.userCpf} onChange={(element) => validateUserCpf(element, selectedSeat)} data-test="client-cpf"></BookTicketStyle.FielToFillInput>
                         </BookTicketStyle.FielToFillDiv>
                     </div>)}
                     <BookTicketStyle.FormButtonSubmitDiv>
-                        <BookTicketStyle.FormButtonSubmit type="submit" onClick={requestTicket}>Reservar assento(s)</BookTicketStyle.FormButtonSubmit>
+                        <BookTicketStyle.FormButtonSubmit type="submit" onClick={requestTicket} data-test="book-seat-btn">Reservar assento(s)</BookTicketStyle.FormButtonSubmit>
                     </BookTicketStyle.FormButtonSubmitDiv>
                 </BookTicketStyle.ClientInfosDiv> : null}
-                <BookTicketStyle.MovieInfosDiv>
+                <BookTicketStyle.MovieInfosDiv data-test="footer">
                     <BookTicketStyle.MovieImage src={seats.movie.posterURL} alt={seats.movie.title}></BookTicketStyle.MovieImage>
                     <BookTicketStyle.MovieDetailsDiv>
                         <BookTicketStyle.MovieTitle>{seats.movie.title}</BookTicketStyle.MovieTitle>
