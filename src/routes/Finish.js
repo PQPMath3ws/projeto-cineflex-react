@@ -49,7 +49,7 @@ const Finish = () => {
                 </FinishStyle.InfoDiv>
                 <FinishStyle.InfoDiv>
                     <FinishStyle.InfoTitle>Ingressos</FinishStyle.InfoTitle>
-                    {session.seats.filter(seat => seatsIDS.includes(seat.id)).map(seat => <FinishStyle.InfoText>Assento {seat.name}</FinishStyle.InfoText>)}
+                    {session.seats.filter(seat => seatsIDS.includes(seat.id)).map(seat => <FinishStyle.InfoText key={seat.id}>Assento {seat.name}</FinishStyle.InfoText>)}
                 </FinishStyle.InfoDiv>
                 <FinishStyle.InfoDiv>
                     <FinishStyle.InfoTitle>Comprador</FinishStyle.InfoTitle>
