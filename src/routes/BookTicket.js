@@ -67,7 +67,7 @@ const BookTicket = () => {
                     "Content-Type": "application/json"
                 },
             });
-            navigate("#/finish", {
+            navigate("/finish", {
                 state: {
                     sessionID: id,
                     seatsIDS: selectedSeats.map(ss => ss.seatId),
