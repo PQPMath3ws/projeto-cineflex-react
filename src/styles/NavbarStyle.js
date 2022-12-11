@@ -1,3 +1,4 @@
+import { ArrowLeft } from "@styled-icons/entypo";
 import styled from "styled-components";
 
 const NavbarStyle = {
@@ -20,6 +21,19 @@ const NavbarStyle = {
         font-size: 34px;
         color: #E8833A;
         text-transform: uppercase;
+    `,
+    NavbarBackLinkButton: styled.button`
+        margin-left: 20px;
+        position: absolute;
+        align-self: flex-start;
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    `,
+    ArrowBackIcon: styled(ArrowLeft)`
+        width: 44px;
+        color: #101010;
     `,
 };
 
