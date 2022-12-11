@@ -8,11 +8,21 @@ const Seat = (props) => {
         if (props.isAvailable) {
             let seats = [...props.selectedSeats];
             if (selected) {
-                let indexOf = seats.indexOf(props.id);
-                if (indexOf > -1) seats.splice(indexOf, 1);
-                setSelected(false);
+                let seat = seats.filter(seatToFilter => seatToFilter.seatId === props.id)[0];
+                if (seat.userName.length > 0 || seat.userCpf.length > 0) {
+                    if (window.confirm("Deseja realmente remover essa poltrona cadastrada?")) {
+                        let indexOf = seats.indexOf(seat);
+                        if (indexOf > -1) seats.splice(indexOf, 1);
+                        setSelected(false);
+                    }
+                }
             } else {
-                seats.push(props.id);
+                seats.push({
+                    seatId: props.id,
+                    seatNumber: props.seatNumber,
+                    userName: "",
+                    userCpf: ""
+                });
                 setSelected(true);
             }
             props.setSelectedSeats(seats);

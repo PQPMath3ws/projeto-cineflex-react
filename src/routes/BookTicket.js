@@ -10,8 +10,6 @@ const BookTicket = () => {
     const [isRequestStart, setIsRequestStart] = useState(false);
     const [seats, setSeats] = useState({});
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [clientName, setClientName] = useState("");
-    const [clientCpf, setClientCpf] = useState("");
 
     const navigate = useNavigate();
 
@@ -23,20 +21,23 @@ const BookTicket = () => {
         { type: "unavailable", text: "Indisponível" },
     ];
 
-    function validateUserName(inputField) {
+    function validateUserName(inputField, seat) {
         const input = inputField.target.value.replace(/[^a-zA-Z ]/g, '');
-        setClientName(input);
+        let seats = [...selectedSeats];
+        let indexOf = seats.indexOf(seat);
+        seats[indexOf].userName = input;
+        setSelectedSeats(seats);
     }
 
-    function validateUserCpf(inputField) {
+    function validateUserCpf(inputField, seat) {
         const input = inputField.target.value.replace(/\D/g, '');
-        if (input.length < 12 && !Number.isNaN(Number(input))) setClientCpf(input);
+        if (input.length < 12 && !Number.isNaN(Number(input))) {
+            let seats = [...selectedSeats];
+            let indexOf = seats.indexOf(seat);
+            seats[indexOf].userCpf = input;
+            setSelectedSeats(seats);
+        }
     }
-
-    const fieldsToFill = [
-        { name: "client", text: "Nome do Comprador:", placeholder: "Digite seu nome", value: clientName, change: validateUserName },
-        { text: "CPF do Comprador:", placeholder: "Digite seu CPF", value: clientCpf, change: validateUserCpf }
-    ];
 
     async function getShowtimeSeats() {
         try {
@@ -48,14 +49,18 @@ const BookTicket = () => {
         }
     }
 
-    async function requestTicket(event) {
-        event.preventDefault();
-        if (clientCpf.length === 11 && clientName.length >= 3 && selectedSeats.length > 0) {
+    async function requestTicket() {
+        let canProceed = false;
+        selectedSeats.forEach(selectedSeat => {
+            if (selectedSeat.userName.length >= 3 && selectedSeat.userCpf.length === 11) canProceed = true;
+            else canProceed = false;
+        });
+        if (canProceed) {
             setSeats({});
+            let compradores = [...selectedSeats.map(ss => ({idAssento: ss.seatId, nome: ss.userName, cpf: ss.userCpf}))];
             let data = {
-                ids: selectedSeats,
-                name: clientName,
-                cpf: clientCpf,
+                ids: selectedSeats.map(ss => ss.seatId),
+                compradores: compradores,
             };
             await axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", data, {
                 headers: {
@@ -65,15 +70,12 @@ const BookTicket = () => {
             navigate("/finish", {
                 state: {
                     sessionID: id,
-                    seatsIDS: selectedSeats,
-                    name: clientName,
-                    cpf: clientCpf
+                    seatsIDS: selectedSeats.map(ss => ss.seatId),
+                    compradores: compradores,
                 }
             });
         } else {
-            if (selectedSeats.length === 0) alert("Selecione os assentos para continuar.");
-            if (clientName.length < 3) alert("Insira um nome válido para continuar.");
-            if (clientCpf.length !== 11) alert("Insira um CPF válido para continuar.");
+            alert("Preencha todos os campos corretamente antes de continuar!");
         }
     }
 
@@ -101,15 +103,22 @@ const BookTicket = () => {
                         <BookTicketStyle.SeatInfoText>{seatStatus.text}</BookTicketStyle.SeatInfoText>
                     </BookTicketStyle.SeatInfoDiv>)}
                 </BookTicketStyle.SeatsInfo>
-                <BookTicketStyle.ClientForm>
-                    {fieldsToFill.map(fieldToFill => <BookTicketStyle.FielToFillDiv key={fieldToFill.name + "_field"}>
-                        <BookTicketStyle.FielToFillText>{fieldToFill.text}</BookTicketStyle.FielToFillText>
-                        <BookTicketStyle.FielToFillInput name={fieldToFill.name} placeholder={fieldToFill.placeholder} value={fieldToFill.value} onChange={fieldToFill.change}></BookTicketStyle.FielToFillInput>
-                    </BookTicketStyle.FielToFillDiv>)}
+                {selectedSeats.length > 0 ? <BookTicketStyle.ClientInfosDiv>
+                    {selectedSeats.map(selectedSeat => <div key={selectedSeat.seatId}>
+                        <BookTicketStyle.FielToFillDiv>
+                            <BookTicketStyle.FielToFillTitle>Assento {selectedSeat.seatNumber}:</BookTicketStyle.FielToFillTitle>
+                            <BookTicketStyle.FielToFillText>Nome do Comprador</BookTicketStyle.FielToFillText>
+                            <BookTicketStyle.FielToFillInput placeholder="Nome do Comprador:" value={selectedSeat.userName} onChange={(element) => validateUserName(element, selectedSeat)}></BookTicketStyle.FielToFillInput>
+                        </BookTicketStyle.FielToFillDiv>
+                        <BookTicketStyle.FielToFillDiv>
+                            <BookTicketStyle.FielToFillText>Nome do Comprador</BookTicketStyle.FielToFillText>
+                            <BookTicketStyle.FielToFillInput placeholder="Digite seu CPF" value={selectedSeat.userCpf} onChange={(element) => validateUserCpf(element, selectedSeat)}></BookTicketStyle.FielToFillInput>
+                        </BookTicketStyle.FielToFillDiv>
+                    </div>)}
                     <BookTicketStyle.FormButtonSubmitDiv>
                         <BookTicketStyle.FormButtonSubmit type="submit" onClick={requestTicket}>Reservar assento(s)</BookTicketStyle.FormButtonSubmit>
                     </BookTicketStyle.FormButtonSubmitDiv>
-                </BookTicketStyle.ClientForm>
+                </BookTicketStyle.ClientInfosDiv> : null}
                 <BookTicketStyle.MovieInfosDiv>
                     <BookTicketStyle.MovieImage src={seats.movie.posterURL} alt={seats.movie.title}></BookTicketStyle.MovieImage>
                     <BookTicketStyle.MovieDetailsDiv>

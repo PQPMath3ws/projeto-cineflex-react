@@ -12,7 +12,7 @@ const Finish = () => {
 
     const navigate = useNavigate();
 
-    const { sessionID, seatsIDS, name, cpf } = {...location.state};
+    const { sessionID, seatsIDS, compradores } = {...location.state};
 
     async function getSessionInfos() {
         try {
@@ -24,11 +24,8 @@ const Finish = () => {
         }
     }
 
-    console.log(session);
-    console.log(seatsIDS);
-
     useEffect(() => {
-        if (location.state && location.state.sessionID && location.state.seatsIDS && location.state.name && location.state.cpf) {
+        if (location.state && location.state.sessionID && location.state.seatsIDS && location.state.compradores) {
             if (!isRequestStart) {
                 setIsRequestStart(true);
                 getSessionInfos();
@@ -48,13 +45,15 @@ const Finish = () => {
                     <FinishStyle.InfoText>{session.day.date} {session.name}</FinishStyle.InfoText>
                 </FinishStyle.InfoDiv>
                 <FinishStyle.InfoDiv>
-                    <FinishStyle.InfoTitle>Ingressos</FinishStyle.InfoTitle>
+                    <FinishStyle.InfoTitle>{session.seats.filter(seat => seatsIDS.includes(seat.id)).length > 1 ? "Ingressos" : "Ingresso"}</FinishStyle.InfoTitle>
                     {session.seats.filter(seat => seatsIDS.includes(seat.id)).map(seat => <FinishStyle.InfoText key={seat.id}>Assento {seat.name}</FinishStyle.InfoText>)}
                 </FinishStyle.InfoDiv>
                 <FinishStyle.InfoDiv>
-                    <FinishStyle.InfoTitle>Comprador</FinishStyle.InfoTitle>
-                    <FinishStyle.InfoText>Nome: {name}</FinishStyle.InfoText>
-                    <FinishStyle.InfoText>CPF: {cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</FinishStyle.InfoText>
+                    <FinishStyle.InfoTitle>{session.seats.filter(seat => seatsIDS.includes(seat.id)).length > 1 ? "Compradores" : "Comprador"}</FinishStyle.InfoTitle>
+                    {compradores.map(comprador => <div key={comprador.idAssento}>
+                        <FinishStyle.InfoText>Nome: {comprador.nome}</FinishStyle.InfoText>
+                        <FinishStyle.InfoText>CPF: {comprador.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</FinishStyle.InfoText>
+                    </div>)}
                 </FinishStyle.InfoDiv>
                 <FinishStyle.ReturnButtonDiv>
                     <FinishStyle.ReturnButton onClick={() => navigate("/")}>Voltar para Home</FinishStyle.ReturnButton>

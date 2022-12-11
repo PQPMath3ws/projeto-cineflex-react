@@ -91,12 +91,21 @@ const BookTicketStyle = {
         letter-spacing: -0.013em;
         color: #4E5A65;
     `,
-    ClientForm: styled.form`
+    ClientInfosDiv: styled.div`
         margin-left: 20px;
         margin-right: 46px;
         margin-top: 40px;
     `,
     FielToFillDiv: styled.div`
+        margin-bottom: 40px;
+    `,
+    FielToFillTitle: styled.p`
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        letter-spacing: 0.04em;
+        color: #293845;
         margin-bottom: 40px;
     `,
     FielToFillText: styled.p`
