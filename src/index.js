@@ -25,7 +25,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<Movies></Movies>}></Route>
                 <Route path="/assentos/:id" element={<BookTicket></BookTicket>}></Route>
-                <Route path="/finish" element={<Finish></Finish>}></Route>
+                <Route path="/sucesso" element={<Finish></Finish>}></Route>
                 <Route path="/sessoes/:id" element={<Sessions></Sessions>}></Route>
             </Routes>
         </BrowserRouter>
