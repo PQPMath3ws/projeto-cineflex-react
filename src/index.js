@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 
@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Reset></Reset>
             <Global></Global>
             <Navbar></Navbar>
@@ -28,7 +28,7 @@ root.render(
                 <Route path="/finish" element={<Finish></Finish>}></Route>
                 <Route path="/sessions/:id" element={<Sessions></Sessions>}></Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 );
 
