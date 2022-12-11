@@ -24,9 +24,9 @@ root.render(
             <Navbar></Navbar>
             <Routes>
                 <Route path="/" element={<Movies></Movies>}></Route>
-                <Route path="/bookTicket/:id" element={<BookTicket></BookTicket>}></Route>
+                <Route path="/assentos/:id" element={<BookTicket></BookTicket>}></Route>
                 <Route path="/finish" element={<Finish></Finish>}></Route>
-                <Route path="/sessions/:id" element={<Sessions></Sessions>}></Route>
+                <Route path="/sessoes/:id" element={<Sessions></Sessions>}></Route>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
