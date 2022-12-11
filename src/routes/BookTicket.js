@@ -63,7 +63,12 @@ const BookTicket = () => {
                 },
             });
             navigate("/finish", {
-                state: data
+                state: {
+                    sessionID: id,
+                    seatsIDS: selectedSeats,
+                    name: clientName,
+                    cpf: clientCpf
+                }
             });
         } else {
             if (selectedSeats.length === 0) alert("Selecione os assentos para continuar.");
