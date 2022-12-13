@@ -22,7 +22,7 @@ const BookTicket = () => {
     ];
 
     function validateUserName(inputField, seat) {
-        const input = inputField.target.value.replace(/[^a-zA-Z ]/g, '');
+        const input = inputField.target.value.replace(/[0-9]/g, '');
         let seats = [...selectedSeats];
         let indexOf = seats.indexOf(seat);
         seats[indexOf].userName = input;
